@@ -1,90 +1,90 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Util;
+using Bolt.Util;
+using Bolt.Collisions;
 
-[RequireComponent (typeof (CollideManager))]
-public class PlatformMovement : MonoBehaviour {
-
-	public Vector2 velocity;
+namespace Bolt {
 	
-	public Vector2 maxSpeed;
-	public float gravity;
-	
-	public string[] collideTypes;
-
-	// Use this for initialization
-	void Start () {
-		velocity.x = velocity.y = 0;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		velocity.y -= gravity;
+	public class PlatformMovement : MonoBehaviour {
 		
-		velocity.x = ClampUtil.Clamp (velocity.x, -1 * maxSpeed.x, maxSpeed.x);
-		velocity.y = ClampUtil.Clamp (velocity.y, -1 * maxSpeed.y, maxSpeed.y);
+		public Vector2 velocity;
 		
-		var pos = this.transform.position;
+		public Vector2 maxSpeed;
+		public float gravity;
 		
-		var scaledVelocity = new Vector2 (velocity.x * TimeUtil.scale (),
-		                                  velocity.y * TimeUtil.scale ());
+		public string[] collideTypes;
 		
-		if (velocity.x != 0)
-		{
-			var collision = GetComponent<CollideManager> ()
-				.CollideAt (collideTypes, this.GetComponent<Hitbox> (), scaledVelocity.x, 0);
-			
-			if (collision == null)
-			{
-				pos.x += scaledVelocity.x;
-			} else {
-				
-				var hitbox = this.GetComponent<Hitbox> ();
-				
-				if (hitbox.xLeft < collision.second.xLeft)
-				{
-					pos.x = collision.second.xLeft - hitbox.width - hitbox.offsetX;
-				} else {
-					pos.x = collision.second.xRight  - hitbox.offsetX;
-				}
-				
-			}
+		// Use this for initialization
+		void Start () {
+			velocity.x = velocity.y = 0;
 		}
 		
-		if (velocity.y != 0)
-		{
-			var collision = GetComponent<CollideManager> ()
-				.CollideAt (collideTypes, this.GetComponent<Hitbox> (), 0, scaledVelocity.y);
+		// Update is called once per frame
+		void Update () {
+			velocity.y -= gravity;
 			
-			if (collision == null)
+			velocity.x = ClampUtil.Clamp (velocity.x, -1 * maxSpeed.x, maxSpeed.x);
+			velocity.y = ClampUtil.Clamp (velocity.y, -1 * maxSpeed.y, maxSpeed.y);
+			
+			var pos = this.transform.position;
+			
+			var scaledVelocity = new Vector2 (velocity.x * TimeUtil.scale (),
+			                                  velocity.y * TimeUtil.scale ());
+			
+			if (velocity.x != 0)
 			{
-				pos.y += scaledVelocity.y;
-			} else {
+				var collision = CollideManager.CollideAt (collideTypes, this.GetComponent<Hitbox> (), scaledVelocity.x, 0);
 				
-				velocity.y = 0;
-				
-				var hitbox = this.GetComponent<Hitbox> ();
-				
-				if (hitbox.yBottom < collision.second.yBottom)
+				if (collision == null)
 				{
-					pos.y = collision.second.yBottom - hitbox.offsetY;
+					pos.x += scaledVelocity.x;
 				} else {
-					pos.y = collision.second.yTop + hitbox.height - hitbox.offsetY;
+					
+					velocity.x = 0;
+					
+					var hitbox = this.GetComponent<Hitbox> ();
+					
+					if (hitbox.xLeft < collision.second.xLeft)
+					{
+						pos.x = collision.second.xLeft - hitbox.width - hitbox.offsetX;
+					} else {
+						pos.x = collision.second.xRight  - hitbox.offsetX;
+					}
 				}
-				
 			}
+			
+			if (velocity.y != 0)
+			{
+				var collision = CollideManager.CollideAt (collideTypes, this.GetComponent<Hitbox> (), 0, scaledVelocity.y);
+				
+				if (collision == null)
+				{
+					pos.y += scaledVelocity.y;
+				} else {
+					
+					velocity.y = 0;
+					
+					var hitbox = this.GetComponent<Hitbox> ();
+					
+					if (hitbox.yBottom < collision.second.yBottom)
+					{
+						pos.y = collision.second.yBottom - hitbox.offsetY;
+					} else {
+						pos.y = collision.second.yTop + hitbox.height - hitbox.offsetY;
+					}
+					
+				}
+			}
+			
+			this.transform.position = pos;
 		}
 		
-		
-		
-		this.transform.position = pos;
-	}
-	
-	public bool OnGround()
-	{
-		var collision = GetComponent<CollideManager> ()
-			.CollideAt (collideTypes, this.GetComponent<Hitbox> (), 0, -0.5f);
+		public bool OnGround()
+		{
+			var collision = CollideManager.CollideAt (collideTypes, this.GetComponent<Hitbox> (), 0, -0.5f);
 			
-		return collision != null;
+			return collision != null;
+		}
 	}
 }
+

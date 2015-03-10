@@ -9,7 +9,8 @@
 // ------------------------------------------------------------------------------
 using System;
 using UnityEngine;
-namespace Control
+
+namespace Bolt.Control
 {
 	public class ControlAxisButtons : IControlAxis
 	{

@@ -3,38 +3,40 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class TimelineEvent
-{
-	
-	private string eventToTrigger;
-	private ActionGroup groupToRun;
-	public CutsceneTimeline timeline;
-	
-	public TimelineEvent (string eventToTrigger)
+namespace Bolt.Timeline {
+	public class TimelineEvent
 	{
-		this.eventToTrigger = eventToTrigger;
-	}
-	
-	public TimelineEvent(ActionGroup groupToRun)
-	{
-		this.groupToRun = groupToRun;
-	}
-	
-	public Coroutine StartCoroutine(IEnumerator routine)
-	{
-		return timeline.StartCoroutine( routine );
-	}
-	
-	public void Trigger()
-	{
-		if (groupToRun != null)
+		
+		private string eventToTrigger;
+		private ActionGroup groupToRun;
+		public CutsceneTimeline timeline;
+		
+		public TimelineEvent (string eventToTrigger)
 		{
-			timeline.Run( groupToRun );
-		} else {
-			timeline.TriggerEvent( eventToTrigger );
+			this.eventToTrigger = eventToTrigger;
 		}
+		
+		public TimelineEvent(ActionGroup groupToRun)
+		{
+			this.groupToRun = groupToRun;
+		}
+		
+		public Coroutine StartCoroutine(IEnumerator routine)
+		{
+			return timeline.StartCoroutine( routine );
+		}
+		
+		public void Trigger()
+		{
+			if (groupToRun != null)
+			{
+				timeline.Run( groupToRun );
+			} else {
+				timeline.TriggerEvent( eventToTrigger );
+			}
+		}
+		
 	}
-	
 }
 
 

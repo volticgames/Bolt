@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
-namespace Control
+
+namespace Bolt.Control
 {
 	public class ControlAxisButton : IControlAxis
 	{

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Doublejump.Animation
+namespace Bolt.Animation
 {
 	public class SpriteCollection
 	{
