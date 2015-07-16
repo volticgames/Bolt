@@ -10,7 +10,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-namespace Control
+
+namespace Bolt.Control
 {
 	public class ControlManager
 	{

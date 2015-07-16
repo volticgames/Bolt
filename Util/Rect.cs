@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Util
+namespace Bolt.Util
 {
 	public static class RectUtil
 	{

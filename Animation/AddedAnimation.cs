@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Doublejump.Animation
+namespace Bolt.Animation
 {
 	[Serializable]
 	public class AddedAnimation

@@ -1,12 +1,3 @@
-// --------------------------------------------------------------------------
-// Functional Programming in .NET - Chapter 3
-// --------------------------------------------------------------------------
-// NOTE: This library contains several useful classes for functional 
-// programming in C# that we implemented in chapter 3 and that we'll 
-// extend and use later in the book. Each secion is marked with a reference
-// to a code listing or section in the book where it was discussed.
-// --------------------------------------------------------------------------
-
 using System;
 using System.Collections.Generic;
 

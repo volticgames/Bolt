@@ -2,23 +2,26 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Bolt.Timeline;
 
-public class ActionGroup
-{
-	public CutsceneTimeline timeline;
-	
-	public ActionGroup ()
+namespace Bolt {
+	public class ActionGroup
 	{
+		public CutsceneTimeline timeline;
 		
-	}
-	
-	protected Coroutine StartCoroutine( IEnumerator routine )
-	{
-		return timeline.StartCoroutine( routine );
-	}
-	
-	public virtual IEnumerator Routine()
-	{
-		yield return null;
+		public ActionGroup ()
+		{
+			
+		}
+		
+		protected Coroutine StartCoroutine( IEnumerator routine )
+		{
+			return timeline.StartCoroutine( routine );
+		}
+		
+		public virtual IEnumerator Routine()
+		{
+			yield return null;
+		}
 	}
 }

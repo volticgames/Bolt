@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 
-namespace Actions
+namespace Bolt.Actions
 {
 	public class GoKitActions
 	{
