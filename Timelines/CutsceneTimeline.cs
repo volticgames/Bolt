@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class CutsceneTimeline
 {
@@ -76,6 +77,11 @@ public class CutsceneTimeline
 	{
 		group.timeline = this;
 		parent.StartCoroutine( group.Routine() );
+	}
+	
+	public void Run( Func<IEnumerator> method )
+	{
+		parent.StartCoroutine( method() );
 	}
 	
 }

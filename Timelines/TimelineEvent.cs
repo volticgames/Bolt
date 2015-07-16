@@ -2,12 +2,14 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class TimelineEvent
 {
 	
 	private string eventToTrigger;
 	private ActionGroup groupToRun;
+	private Func<IEnumerator> methodToCall;
 	public CutsceneTimeline timeline;
 	
 	public TimelineEvent (string eventToTrigger)
@@ -20,6 +22,11 @@ public class TimelineEvent
 		this.groupToRun = groupToRun;
 	}
 	
+	public TimelineEvent(Func<IEnumerator> action )
+	{
+		methodToCall = action;	
+	}
+	
 	public Coroutine StartCoroutine(IEnumerator routine)
 	{
 		return timeline.StartCoroutine( routine );
@@ -30,8 +37,10 @@ public class TimelineEvent
 		if (groupToRun != null)
 		{
 			timeline.Run( groupToRun );
-		} else {
+		} else if (eventToTrigger != null) {
 			timeline.TriggerEvent( eventToTrigger );
+		} else {
+			timeline.Run( methodToCall );
 		}
 	}
 	

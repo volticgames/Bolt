@@ -29,6 +29,8 @@ public class SceneManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		timeline.Update();
+		if (timeline != null) {
+			timeline.Update();	
+		}
 	}
 }

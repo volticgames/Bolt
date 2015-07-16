@@ -14,6 +14,7 @@ public class SpriteAnimator : MonoBehaviour {
 	private int currentFrame;
 
 	public string initialAnimation;
+	public AddedAnimation currentAnimation;
 
 	// Use this for initialization
 	void Start () {
@@ -51,6 +52,7 @@ public class SpriteAnimator : MonoBehaviour {
 	/// <param name="animation">Animation.</param>
 	public void Play(string animation)
 	{
+		currentAnimation = GetAnimationByName( animation );
 		frames = new SpriteCollection(animation);
 		SetSprite( frames.GetSpriteByIndex(0) );
 		speed = GetAnimationByName( animation ).speed;
@@ -63,6 +65,7 @@ public class SpriteAnimator : MonoBehaviour {
 	/// <param name="index">Index.</param>
 	public void PlayIndex(int index)
 	{
+		currentAnimation = anims[index];
 		frames = new SpriteCollection( anims[index].GetName() );
 		SetSprite( frames.GetSpriteByIndex(0) );
 		speed = anims[index].speed;
