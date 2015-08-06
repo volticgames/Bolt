@@ -3,6 +3,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using Bolt.Actions;
+using Bolt.Timeline;
 
 public class TimelineEvent
 {

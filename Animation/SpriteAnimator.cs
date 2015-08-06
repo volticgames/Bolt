@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Util;
-using Doublejump.Animation;
+using Bolt.Animation;
 
 [RequireComponent (typeof (SpriteRenderer))]
 public class SpriteAnimator : MonoBehaviour {

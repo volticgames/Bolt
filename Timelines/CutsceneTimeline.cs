@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using Bolt.Actions;
 
 namespace Bolt.Timeline {
 	public class CutsceneTimeline
@@ -80,11 +81,11 @@ namespace Bolt.Timeline {
 			parent.StartCoroutine( group.Routine() );
 		}
 
-	}
+		public void Run( Func<IEnumerator> method )
+		{
+			parent.StartCoroutine( method() );
+		}
 
-	public void Run( Func<IEnumerator> method )
-	{
-		parent.StartCoroutine( method() );
 	}
 }
 

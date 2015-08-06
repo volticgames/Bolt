@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Bolt.Timeline;
 
-namespace Bolt {
+namespace Bolt.Actions {
 	public class ActionGroup
 	{
 		public CutsceneTimeline timeline;
